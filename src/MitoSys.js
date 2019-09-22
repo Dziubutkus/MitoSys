@@ -6,30 +6,45 @@ class MitoSys extends Component {
         this.state = {
             subscribeDisabled: false,
             subscribeText: 'Subscribe',
+            subscribeLoading: false,
             unsubscribeDisabled: true,
             unsubscribeText: 'Not subscribed',
-            totalEarnings: 0.500141412412
+            unsubscribeLoading: false,
+            totalEarnings: 0.500141412412,
         };
     }
 
     subscribeBtn(event) {
         if (!this.state.subscribeDisabled) {
             this.setState({ subscribeDisabled: true });
-            this.setState({ subscribeText: 'Subscribed' });
-            this.setState({ unsubscribeDisabled: false });
-            this.setState({ unsubscribeText: 'Unsubscribe' });
-            localStorage.setItem('mitosysSubscribe', 'yes');
+            this.setState({ subscribeLoading: true });
+
+            let that = this;
+            setTimeout(function() {
+                that.setState({ subscribeLoading: false });
+                that.setState({ subscribeText: 'Subscribed' });
+                that.setState({ unsubscribeDisabled: false });
+                that.setState({ unsubscribeText: 'Unsubscribe' });
+                localStorage.setItem('mitosysSubscribe', 'yes');
+            }, 2000);
         }
         return true;
     }
 
     unsubscribeBtn(event) {
         if (!this.state.unsubscribeDisabled) {
-            this.setState({ subscribeDisabled: false });
-            this.setState({ subscribeText: 'Subscribe' });
             this.setState({ unsubscribeDisabled: true });
-            this.setState({ unsubscribeText: 'Not subscribed' });
-            localStorage.removeItem('mitosysSubscribe');
+            this.setState({ unsubscribeLoading: true });
+
+            let that = this;
+            setTimeout(function() {
+                that.setState({ subscribeDisabled: false });
+                that.setState({ subscribeText: 'Subscribe' });
+                that.setState({ unsubscribeDisabled: true });
+                that.setState({ unsubscribeText: 'Not subscribed' });
+                that.setState({ unsubscribeLoading: false });
+                localStorage.removeItem('mitosysSubscribe');
+            }, 2000);
         }
         return true;
     }
@@ -61,8 +76,18 @@ class MitoSys extends Component {
                     <h3 className="text-center mb-5 text-underline"><u>Mito<strong>Sys</strong></u></h3>
                     <hr />
                     <div className="d-block text-center">
-                        <button type="button" class="btn btn-warning mr-0 mr-md-3 mb-3 mb-md-0" onClick={this.subscribeBtn.bind(this)} disabled={this.state.subscribeDisabled}>{this.state.subscribeText}</button>
-                        <button type="button" class="btn btn-warning" onClick={this.unsubscribeBtn.bind(this)} disabled={this.state.unsubscribeDisabled}>{this.state.unsubscribeText}</button>
+                        <button type="button" class="btn btn-warning mr-0 mr-md-3 mb-3 mb-md-0" onClick={this.subscribeBtn.bind(this)} disabled={this.state.subscribeDisabled}>
+                            {this.state.subscribeText}
+                            {(this.state.subscribeLoading) &&
+                                <img src={require('./assets/images/loader.svg')} height="40px" />
+                            }
+                        </button>
+                        <button type="button" class="btn btn-warning" onClick={this.unsubscribeBtn.bind(this)} disabled={this.state.unsubscribeDisabled}>
+                            {this.state.unsubscribeText}
+                            {(this.state.unsubscribeLoading) &&
+                                <img src={require('./assets/images/loader.svg')} height="40px" />
+                            }
+                        </button>
                     </div>
                     <hr />
                     <table className="mx-auto">
