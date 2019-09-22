@@ -12,7 +12,7 @@ contract Mitosys is ERC721 {
 	// ERC20 DAI = IERC20(0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa);
 	IRToken RToken = IRToken(0x4f3E18CEAbe50E64B37142c9655b3baB44eFF578);
 	dai DAI;
-	
+
 	uint256 newTokenIndex = 0;
 	mapping (address => uint256) internalDaiBalance;
 	mapping (address => uint256) IDfromOwner;
@@ -46,16 +46,16 @@ contract Mitosys is ERC721 {
 		RToken.mint(NFT_price);
 
 		//the user's internal balance is updated to reflect this
-		internalDaiBalance[msg.sender] += NFT_price;
+		//internalDaiBalance[msg.sender] += NFT_price;
 
 		//an NFT is minted and sent to the user
-		ERC721._mint(msg.sender, newTokenIndex);
+		//ERC721._mint(msg.sender, newTokenIndex);
 
 		//increment newTokenIndex
-		newTokenIndex++;
+		//newTokenIndex++;
 
 		//return
-		return newTokenIndex--;
+		return newTokenIndex;
 
 	}
 
@@ -84,7 +84,7 @@ contract Mitosys is ERC721 {
 	function sendPrincipal(uint256 amount, address dest) internal
 	{
 		//call redeem in the rtoken contract
-		RToken.redeem(amount);
+		//RToken.redeem(amount);
 
 		//send that DAI
 		DAI.transfer(dest, amount);

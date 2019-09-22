@@ -34,6 +34,11 @@ module.exports = {
           network_id: "42",
           skipDryRun: true
       },
+      rinkeby: {
+          provider: () => new HDWalletProvider("oblige hungry basic innocent adapt approve bridge potato odor vocal device water", "https://rinkeby.infura.io/v3/ee1048fe2d44430bab40a1d0374ce6d2"),
+          network_id: "4",
+          skipDryRun: true
+      },
   },
 
   mocha: {

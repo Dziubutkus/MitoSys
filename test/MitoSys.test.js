@@ -21,7 +21,7 @@ contract('dai', accounts => {
 
     before(async function () {
         this.FT = await dai.new(_name, _symbol, _decimals);
-        this.NFT = await MitoSys.new(NFTPrice, dai.address);
+        this.NFT = await MitoSys.new(NFTPrice, this.FT.address);
     });
 
     describe('FT attributes', function() {
@@ -58,12 +58,13 @@ contract('dai', accounts => {
 
          it("should forge NFT", async function() {
             await this.FT.approve(this.NFT.address, 1200, {from: Alice});
-            console.log(await this.FT.allowance(Alice, this.NFT.address));
-            console.log(await this.FT.allowance(Alice, this.NFT.address) >= NFTPrice? true : false);
+            let allow = await this.FT.allowance(Alice, this.NFT.address);
+            console.warn(allow.toString())
+            console.log(await this.FT.allowance(Alice, this.NFT.address) >= NFTPrice);
             console.log(await this.NFT.forge_NFT({from: Alice}));
             // var supply = (await this.FT.totalSupply()).toNumber();
             // supply.should.equal(900);
          });
-         
+
     })
 })

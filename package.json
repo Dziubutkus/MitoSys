@@ -20,8 +20,11 @@
   },
   "homepage": "https://github.com/ericDeCourcy/mitosys#readme",
   "dependencies": {
+    "chai": "^4.2.0",
+    "chai-bignumber": "^3.0.0",
     "oneclick": "^1.0.2",
     "openzeppelin-solidity": "^2.3.0",
+    "openzeppelin-test-helpers": "^0.4.3",
     "truffle-hdwallet-provider": "^1.0.17"
   }
 }
