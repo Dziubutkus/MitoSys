@@ -21,7 +21,7 @@ contract('dai', accounts => {
 
     before(async function () {
         this.FT = await dai.new(_name, _symbol, _decimals);
-        this.NFT = await MitoSys.new(NFTPrice, dai.address);
+        this.NFT = await MitoSys.new(NFTPrice, this.FT.address, {from: accounts[0]});
     });
 
     describe('FT attributes', function() {
