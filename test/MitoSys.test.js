@@ -2,6 +2,10 @@ const { BN, constants, time, shouldFail } = require('openzeppelin-test-helpers')
 
 const dai = artifacts.require('dai');
 const MitoSys = artifacts.require('Mitosys.sol');
+const RToken = artifacts.require('RToken.sol');
+const AllocationStrategy = artifacts.require('IAllocationStrategy.sol');
+
+const allocationStrategyAddress = "0x152b48c07322d56EcdeAdDF780a2c09b57b11F07";
 
 const BigNumber = web3.BigNumber;
 
@@ -22,6 +26,8 @@ contract('dai', accounts => {
     before(async function () {
         this.FT = await dai.new(_name, _symbol, _decimals);
         this.NFT = await MitoSys.new(NFTPrice, this.FT.address);
+        this.allocationStrategy = await AllocationStrategy.new(allocationStrategyAddress);
+        this.rtoken = await RToken.new(this.allocationStrategy.address);
     });
 
     describe('FT attributes', function() {
