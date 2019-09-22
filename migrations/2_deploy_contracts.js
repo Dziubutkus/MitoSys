@@ -9,5 +9,5 @@ const decimals = 3;
 
 module.exports = function(deployer) {
   deployer.deploy(dai, name, symbol, decimals).then(function () {
-    return deployer.deploy(Mitosys, NFTPrice, daiAddress)});
+    return deployer.deploy(Mitosys, NFTPrice, dai.address)});
 };

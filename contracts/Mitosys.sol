@@ -4,13 +4,15 @@ pragma solidity ^0.5.0;
 import 'openzeppelin-solidity/contracts/token/ERC20/IERC20.sol';
 import "./ERC721.sol";
 import "./IRToken.sol";
+import "./dai.sol";
 
 contract Mitosys is ERC721 {
 
 	//these are both on rinkeby
-	IERC20 DAI = IERC20(0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa);
+	// ERC20 DAI = IERC20(0x5592EC0cfb4dbc12D3aB100b257153436a1f0FEa);
 	IRToken RToken = IRToken(0x4f3E18CEAbe50E64B37142c9655b3baB44eFF578);
-
+	dai DAI;
+	
 	uint256 newTokenIndex = 0;
 	mapping (address => uint256) internalDaiBalance;
 	mapping (address => uint256) IDfromOwner;
@@ -20,10 +22,11 @@ contract Mitosys is ERC721 {
 
 	//set the index to 0 and ensure that its 0
 	//set price
-	constructor(uint256 _price) public
+	constructor(uint256 _price, address _dai) public
 	{
 		newTokenIndex = 0;
 		NFT_price = _price;
+		DAI = dai(_dai);
 	}
 
 
@@ -31,8 +34,9 @@ contract Mitosys is ERC721 {
 	function forge_NFT() public returns(uint256)
 	{
 		//require that allowance for Dai is enough
-		require(DAI.allowance(msg.sender, address(this)) >= NFT_price);
-
+		require(DAI.totalSupply() > 0, "No DAI supply");
+		require(DAI.allowance(msg.sender, address(this)) > 0, "No DAI allowance");
+		require(DAI.allowance(msg.sender, address(this)) >= NFT_price, "DAI allowance not enough");
 		//allow the Rtoken contract to move NFT_price amount of DAI
 		//should not fail since we know that we have the allowance to do so
 		//needed for calls to "mint"
