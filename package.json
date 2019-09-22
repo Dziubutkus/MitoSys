@@ -22,5 +22,6 @@
   "dependencies": {
     "oneclick": "^1.0.2",
     "openzeppelin-solidity": "^2.3.0"
+    "truffle-hdwallet-provider": "^1.0.17"
   }
 }
