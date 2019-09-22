@@ -45,5 +45,12 @@ contract('dai', accounts => {
             balanceAlice.should.equal(100);
             balanceBob.should.equal(100);
          });
+
+         it("should burn 100 dai coins", async function() {
+            this.token.burn(100);
+            var supply = (await this.token.totalSupply()).toNumber();
+            supply.should.equal(900);
+         });
+         
     })
 })

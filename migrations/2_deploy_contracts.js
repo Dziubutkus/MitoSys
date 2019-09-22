@@ -8,6 +8,6 @@ const symbol = 'dai';
 const decimals = 3;
 
 module.exports = function(deployer) {
-  deployer.deploy(Mitosys, NFTPrice);
-  deployer.deploy(dai, name, symbol, decimals);
+  deployer.deploy(dai, name, symbol, decimals).then(function () {
+    return deployer.deploy(Mitosys, NFTPrice, daiAddress)});
 };
