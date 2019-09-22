@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css?family=Fira+Code&display=swap');
+@import url('https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+
+body {
+    background: white;
+    font-family: 'Fira Code', monospace;
+}
+
+.btn-warning {
+    min-width: 15rem;
+    padding: 0rem 1.6rem;
+    height: 3.8rem;
+    font-size: 1.5rem;
+
+    border: 2px solid #e0a800;
+    -webkit-box-shadow: 0 0.1rem 0 0 #e0a800;
+    box-shadow: 0 0.1rem 0 0 #e0a800;
+    transition: .2s all;
+}
+
+.btn-warning:not([disabled]):hover {
+    background: #ffc107 !important;
+    -webkit-transform: translateY(-.2rem);
+    transform: translateY(-.2rem);
+    -webkit-box-shadow: 0 0.2rem 0 0 #e0a800;
+    box-shadow: 0 0.2rem 0 0 #e0a800;
+}
+
+.btn-warning:not([disabled]):focus {
+    -webkit-box-shadow: 0 0.1rem 0 0 #e0a800;
+    box-shadow: 0 0.1rem 0 0 #e0a800;
+    -webkit-transform: translateY(0rem);
+    transform: translateY(0rem);
+    outline: none;
+}
+
+.btn-warning:not([disabled]):active {
+    box-shadow: none !important;
+    outline: none;
+    -webkit-box-shadow: 0 0.1rem 0 0 #e0a800;
+    box-shadow: 0 0.1rem 0 0 #e0a800;
+}
+
+.btn-warning[disabled]:hover {
+    cursor: not-allowed;
+}
+
+.orange-title {
+    color: #e0a800;
+}
