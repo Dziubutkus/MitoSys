@@ -11,6 +11,7 @@ class MitoSys extends Component {
             unsubscribeText: 'Not subscribed',
             unsubscribeLoading: false,
             totalEarnings: 0.500141412412,
+            totalDAI: 10000.00,
         };
     }
 
@@ -25,6 +26,7 @@ class MitoSys extends Component {
                 that.setState({ subscribeText: 'Subscribed' });
                 that.setState({ unsubscribeDisabled: false });
                 that.setState({ unsubscribeText: 'Unsubscribe' });
+                that.setState({ totalDAI: parseFloat(that.state.totalDAI) + 100 });
                 localStorage.setItem('mitosysSubscribe', 'yes');
             }, 2000);
         }
@@ -43,6 +45,7 @@ class MitoSys extends Component {
                 that.setState({ unsubscribeDisabled: true });
                 that.setState({ unsubscribeText: 'Not subscribed' });
                 that.setState({ unsubscribeLoading: false });
+                that.setState({ totalDAI: parseFloat(that.state.totalDAI) - 100 });
                 localStorage.removeItem('mitosysSubscribe');
             }, 2000);
         }
@@ -62,7 +65,8 @@ class MitoSys extends Component {
 
         let that = this;
         setInterval(() => {
-            let totalEarnings = that.state.totalEarnings + 0.0000229578894;
+            let formula = that.state.totalDAI * 0.0724 / 365 / 24 / 60 / 60;
+            let totalEarnings = that.state.totalEarnings + formula;
             that.setState({ totalEarnings });
             localStorage.setItem('totalEarnings', totalEarnings);
         }, 1000);
@@ -94,7 +98,7 @@ class MitoSys extends Component {
                         <tbody>
                             <tr>
                                 <td className="font-weight-bold pr-3 orange-title"><i className="fa fa-compass"></i> Total DAI:</td>
-                                <td>10000.00$</td>
+                                <td>{this.state.totalDAI}.00$</td>
                             </tr>
                             <tr>
                                 <td className="font-weight-bold pr-3 orange-title"><i className="fa fa-globe"></i> Total Earned:</td>
