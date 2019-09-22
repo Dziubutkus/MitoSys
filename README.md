@@ -7,3 +7,12 @@ The MitoSYS platform aims to capitalize on people who are not willing to pay for
 
 ### Credits
 **rDAI** https://redeem.money/
+
+
+#Setup
+```
+npm install
+```
+```
+npm start
+```
