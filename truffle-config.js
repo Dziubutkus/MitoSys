@@ -14,7 +14,7 @@ module.exports = {
    *
    * $ truffle test --network <network-name>
    */
-     plugins: ['oneclick']
+
 
   networks: {
     // Useful for testing. The `development` name is special - truffle uses it by default
@@ -29,37 +29,21 @@ module.exports = {
       network_id: "*",       // Any network (default: none)
      },
 
-      kovan: {
+    kovan: {
           provider: () => new HDWalletProvider("oblige hungry basic innocent adapt approve bridge potato odor vocal device water", "https://kovan.infura.io/v3/ee1048fe2d44430bab40a1d0374ce6d2"),
           network_id: "42",
           skipDryRun: true
       },
-
-    // Useful for private networks
-    // private: {
-      // provider: () => new HDWalletProvider(mnemonic, `https://network.io`),
-      // network_id: 2111,   // This network is yours, in the cloud.
-      // production: true    // Treats this network as if it was a public net. (default: false)
-    // }
   },
 
-  // Set default mocha options here, use special reporters etc.
   mocha: {
     // timeout: 100000
   },
 
-  // Configure your compilers
   compilers: {
     solc: {
-      // version: "0.5.1",    // Fetch exact version from solc-bin (default: truffle's version)
-      // docker: true,        // Use "0.5.1" you've installed locally with docker (default: false)
-      // settings: {          // See the solidity docs for advice about optimization and evmVersion
-      //  optimizer: {
-      //    enabled: false,
-      //    runs: 200
-      //  },
-      //  evmVersion: "byzantium"
-      // }
     }
-  }
+  },
+
+   plugins: ['oneclick']
 }
