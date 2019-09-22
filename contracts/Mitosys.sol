@@ -40,10 +40,10 @@ contract Mitosys is ERC721 {
 		//allow the Rtoken contract to move NFT_price amount of DAI
 		//should not fail since we know that we have the allowance to do so
 		//needed for calls to "mint"
-		DAI.approve(address(RToken), NFT_price);
+		// DAI.approve(address(RToken), NFT_price);
 
 		//call "mint" in the Rtoken contract, creating Rtokens for this contract
-		RToken.mint(NFT_price);
+		// RToken.mint(NFT_price);
 
 		//the user's internal balance is updated to reflect this
 		//internalDaiBalance[msg.sender] += NFT_price;
